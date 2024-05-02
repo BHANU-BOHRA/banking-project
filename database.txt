@@ -1,0 +1,181 @@
+CREATE DATABASE IF NOT EXISTS banking_system;
+
+USE banking_system;
+
+CREATE TABLE IF NOT EXISTS customers(
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    cust_name VARCHAR(20) NOT NULL,
+    login_password VARCHAR(25) NOT NULL,
+    address VARCHAR(50),
+    phone VARCHAR(15) NOT NULL UNIQUE,
+    email VARCHAR(50) UNIQUE,
+    dob DATE
+) AUTO_INCREMENT=100;
+
+CREATE TABLE IF NOT EXISTS accounts(
+    account_no INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    acc_type VARCHAR(10) CHECK
+        (
+            acc_type IN('savings', 'current', 'zero')
+        ),
+        balance INT,
+        open_date DATE,
+        acc_status VARCHAR(8)
+    CHECK
+        (
+            acc_status IN('active', 'inactive')
+        ),
+    cradit_score INT CHECK
+        (cradit_score BETWEEN 0 AND 900),
+        FOREIGN KEY(customer_id) REFERENCES customers(customer_id) ON DELETE SET NULL
+) AUTO_INCREMENT=1000;
+
+CREATE TABLE IF NOT EXISTS transactions(
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_no INT,
+    transaction_type VARCHAR(15) CHECK
+        (
+            transaction_type IN('credit', 'debit')
+        ),
+	amount INT NOT NULL,
+	transaction_date DATETIME,
+    FOREIGN KEY(account_no) REFERENCES accounts(account_no)
+) AUTO_INCREMENT=10000;
+
+CREATE TABLE IF NOT EXISTS transfers(
+    transfer_id INT AUTO_INCREMENT PRIMARY KEY,
+    sender INT,
+    receiver INT,
+	amount INT NOT NULL,
+	transfer_date DATETIME,
+    FOREIGN KEY(sender) REFERENCES accounts(account_no),
+    FOREIGN KEY(receiver) REFERENCES accounts(account_no)
+) AUTO_INCREMENT=100000;
+
+
+INSERT INTO customers (cust_name, login_password, address, phone, email, dob) VALUES
+('John Doe', 'password123', '123 Main St, City A', '555-1234', 'john.doe@example.com', '1990-05-15'),
+('Jane Smith', 'pass987', '456 Elm St, City B', '555-5678', 'jane.smith@example.com', '1985-10-20'),
+('Michael Johnson', 'mikepass', '789 Oak St, City C', '555-2468', 'michael.j@example.com', '1992-03-08'),
+('Sarah Brown', 'sbrownpwd', '321 Pine St, City D', '555-9876', 'sarah.brown@example.com', '1988-12-03'),
+('David Wilson', 'dave123', '555 Cedar St, City E', '555-1111', 'david.w@example.com', '1995-07-25'),
+('Emily Taylor', 'emilypass', '777 Maple St, City F', '555-2222', 'emily.taylor@example.com', '1993-09-12'),
+('Chris Evans', 'chrisev', '888 Birch St, City G', '555-3333', 'chris.evans@example.com', '1987-02-18'),
+('Amanda Clark', 'amanda99', '999 Walnut St, City H', '555-4444', 'amanda.clark@example.com', '1991-11-30'),
+('Alex Turner', 'alexpass', '111 Ash St, City I', '555-5555', 'alex.turner@example.com', '1989-04-21'),
+('Olivia White', 'olivia789', '222 Sycamore St, City J', '555-6666', 'olivia.white@example.com', '1994-06-28'),
+('Matthew Lee', 'mattlee', '333 Pineapple St, City K', '555-7777', 'matthew.lee@example.com', '1986-08-17'),
+('Sophia Adams', 'sophia123', '444 Orange St, City L', '555-8888', 'sophia.adams@example.com', '1990-01-09'),
+('Daniel Harris', 'dharris', '555 Lemon St, City M', '555-9999', 'daniel.h@example.com', '1984-11-02'),
+('Grace Parker', 'gparker', '666 Grape St, City N', '555-1230', 'grace.p@example.com', '1996-02-14'),
+('Ryan Hughes', 'rhughes', '777 Berry St, City O', '555-4567', 'ryan.hughes@example.com', '1983-07-07'),
+('Isabella Martinez', 'isabella88', '888 Peach St, City P', '555-7890', 'isabella.m@example.com', '1988-05-24'),
+('Noah Adams', 'noahpwd', '999 Plum St, City Q', '555-1357', 'noah.adams@example.com', '1997-04-03'),
+('Chloe Carter', 'chloec', '111 Cherry St, City R', '555-2460', 'chloe.c@example.com', '1992-12-18'),
+('Ethan Baker', 'ethan456', '222 Grapefruit St, City S', '555-3579', 'ethan.baker@example.com', '1985-09-29'),
+('Mia Young', 'miayoung', '333 Kiwi St, City T', '555-4680', 'mia.young@example.com', '1993-11-11'),
+('Lucas Scott', 'lucas321', '444 Mango St, City U', '555-5791', 'lucas.scott@example.com', '1989-03-26'),
+('Avery Lopez', 'averylo', '555 Avocado St, City V', '555-6802', 'avery.lopez@example.com', '1995-06-07'),
+('Harper Wright', 'harper87', '666 Papaya St, City W', '555-7913', 'harper.w@example.com', '1991-02-20'),
+('Jackson Hall', 'jackson99', '777 Coconut St, City X', '555-8024', 'jackson.hall@example.com', '1987-10-15'),
+('Lily Reed', 'lilyr', '888 Pine St, City Y', '555-9135', 'lily.reed@example.com', '1994-08-23');
+
+
+INSERT INTO accounts (customer_id, acc_type, balance, open_date, acc_status, cradit_score) VALUES
+(100, 'savings', 5000, '2023-01-15', 'active', 750),
+(101, 'current', 10000, '2023-02-20', 'active', 800),
+(102, 'savings', 3000, '2023-03-10', 'active', 700),
+(103, 'zero', 0, '2023-04-05', 'active', 600),
+(104, 'savings', 7000, '2023-05-12', 'active', 720),
+(105, 'current', 15000, '2023-06-08', 'active', 850),
+(106, 'savings', 2000, '2023-07-17', 'active', 680),
+(107, 'savings', 4000, '2023-08-22', 'active', 720),
+(108, 'current', 12000, '2023-09-14', 'active', 780),
+(109, 'savings', 6000, '2023-10-25', 'active', 740),
+(110, 'zero', 0, '2023-11-30', 'active', 650),
+(111, 'savings', 8000, '2023-12-05', 'active', 760),
+(112, 'current', 18000, '2024-01-18', 'active', 880),
+(113, 'savings', 2500, '2024-02-21', 'active', 690),
+(114, 'savings', 3500, '2024-03-12', 'active', 710),
+(115, 'current', 14000, '2024-04-08', 'active', 820),
+(116, 'savings', 9000, '2024-05-15', 'active', 770),
+(117, 'current', 16000, '2024-06-20', 'active', 870),
+(118, 'savings', 4500, '2024-07-17', 'active', 730),
+(119, 'savings', 5500, '2024-08-22', 'active', 750),
+(120, 'current', 20000, '2024-09-14', 'active', 800),
+(121, 'savings', 10000, '2024-10-25', 'active', 800),
+(122, 'zero', 0, '2024-11-30', 'active', 600),
+(123, 'savings', 12000, '2024-12-05', 'active', 780),
+(124, 'current', 22000, '2025-01-18', 'active', 820);
+
+
+INSERT INTO transactions (account_no, transaction_type, amount, transaction_date) VALUES
+(1001, 'debit', 2000, '2024-05-01 10:00:00'),    
+(1002, 'credit', 2000, '2024-05-01 10:00:00'),   
+(1003, 'debit', 1500, '2024-05-02 11:00:00'),    
+(1004, 'credit', 1500, '2024-05-02 11:00:00'),   
+(1005, 'debit', 3000, '2024-05-03 12:00:00'),    
+(1006, 'credit', 3000, '2024-05-03 12:00:00'),   
+(1007, 'debit', 1000, '2024-05-04 13:00:00'),    
+(1008, 'credit', 1000, '2024-05-04 13:00:00'),   
+(1009, 'debit', 2500, '2024-05-05 14:00:00'),    
+(1010, 'credit', 2500, '2024-05-05 14:00:00'),   
+(1011, 'debit', 4000, '2024-05-06 15:00:00'),    
+(1012, 'credit', 4000, '2024-05-06 15:00:00'),   
+(1013, 'debit', 1800, '2024-05-07 16:00:00'),    
+(1014, 'credit', 1800, '2024-05-07 16:00:00'),   
+(1015, 'debit', 2200, '2024-05-08 17:00:00'),    
+(1016, 'credit', 2200, '2024-05-08 17:00:00'),   
+(1017, 'debit', 3500, '2024-05-09 18:00:00'),    
+(1018, 'credit', 3500, '2024-05-09 18:00:00'),   
+(1019, 'debit', 2800, '2024-05-10 19:00:00'),    
+(1020, 'credit', 2800, '2024-05-10 19:00:00'),   
+(1021, 'debit', 1500, '2024-05-11 20:00:00'),    
+(1022, 'credit', 1500, '2024-05-11 20:00:00'),   
+(1023, 'debit', 5000, '2024-05-12 21:00:00'),    
+(1024, 'credit', 5000, '2024-05-12 21:00:00');
+
+INSERT INTO transactions (account_no, transaction_type, amount, transaction_date) VALUES
+(1000, 'debit', 500, '2024-05-01 08:00:00'),     
+(1001, 'credit', 500, '2024-05-01 08:00:00'),   
+(1002, 'debit', 1000, '2024-05-01 09:00:00'),    
+(1003, 'credit', 1000, '2024-05-01 09:00:00'),  
+(1004, 'debit', 1500, '2024-05-02 10:00:00'),    
+(1005, 'credit', 1500, '2024-05-02 10:00:00'),  
+(1006, 'debit', 2000, '2024-05-03 11:00:00'),    
+(1007, 'credit', 2000, '2024-05-03 11:00:00'),  
+(1008, 'debit', 2500, '2024-05-04 12:00:00'),    
+(1009, 'credit', 2500, '2024-05-04 12:00:00'),  
+(1010, 'debit', 3000, '2024-05-05 13:00:00'),    
+(1011, 'credit', 3000, '2024-05-05 13:00:00'),  
+(1012, 'debit', 3500, '2024-05-06 14:00:00'),    
+(1013, 'credit', 3500, '2024-05-06 14:00:00'),  
+(1014, 'debit', 4000, '2024-05-07 15:00:00'),    
+(1015, 'credit', 4000, '2024-05-07 15:00:00'),  
+(1016, 'debit', 4500, '2024-05-08 16:00:00'),    
+(1017, 'credit', 4500, '2024-05-08 16:00:00'),  
+(1018, 'debit', 5000, '2024-05-09 17:00:00'),    
+(1019, 'credit', 5000, '2024-05-09 17:00:00'),  
+(1020, 'debit', 5500, '2024-05-10 18:00:00'),    
+(1021, 'credit', 5500, '2024-05-10 18:00:00'),  
+(1022, 'debit', 6000, '2024-05-11 19:00:00'),    
+(1023, 'credit', 6000, '2024-05-11 19:00:00'),  
+(1024, 'debit', 6500, '2024-05-12 20:00:00'),    
+(1000, 'credit', 6500, '2024-05-12 20:00:00');  
+
+
+
+INSERT INTO transfers (sender, receiver, amount, transfer_date) VALUES
+(1001, 1002, 2000, '2024-05-01 10:00:00'),  
+(1003, 1004, 1500, '2024-05-02 11:00:00'),  
+(1005, 1006, 3000, '2024-05-03 12:00:00'),  
+(1007, 1008, 1000, '2024-05-04 13:00:00'),  
+(1009, 1010, 2500, '2024-05-05 14:00:00'),  
+(1011, 1012, 4000, '2024-05-06 15:00:00'),  
+(1013, 1014, 1800, '2024-05-07 16:00:00'),  
+(1015, 1016, 2200, '2024-05-08 17:00:00'),  
+(1017, 1018, 3500, '2024-05-09 18:00:00'),  
+(1019, 1020, 2800, '2024-05-10 19:00:00'),  
+(1021, 1022, 1500, '2024-05-11 20:00:00'),  
+(1023, 1024, 5000, '2024-05-12 21:00:00');

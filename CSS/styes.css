@@ -1,0 +1,459 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Playfair Display", serif;
+}
+
+main {
+    height: 120vh;
+    background-image: url(../assets/images/background4.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 80vw;
+    height: 90vh;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 26px 42px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+    font-size: 40px;
+    text-align: center;
+    color: rgb(164, 212, 253);
+}
+
+.reg-form {
+    width: 40%;
+    height: 100%;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 26px 42px rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+}
+
+.reg-form h2 {
+    font-size: 40px;
+    text-decoration: underline;
+    color: rgb(164, 212, 253);
+    text-align: center;
+    margin-top: 5px;
+}
+
+.reg-form form {
+    margin-top: 50px;
+}
+
+label {
+    display: block;
+    margin: 2px 0 5px;
+    color: aliceblue;
+    font-size: 20px;
+}
+
+input {
+    width: 70%;
+    font-size: 15px;
+    padding: 3px;
+    transition: linear;
+    border: none;
+}
+
+input:focus {
+    border: 2px solid black;
+}
+
+input[type="submit"] {
+    background-color: #14A44D;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: none;
+    transition: linear;
+}
+
+input[type="submit"]:active {
+    background-color: #066f30;
+    border: 2px solid black;
+}
+
+.underline:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.underline:active {
+    font-size: 12px;
+}
+
+.invalid {
+    margin-top: 30px;
+    color: #ff8f8f;
+    font-weight: 600;
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.sign {
+    border: none;
+    width: 50%;
+    background-color: #9FA6B2;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.sign-card {
+    width: 60vw;
+    height: 110vh;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 26px 42px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.signup-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 26px 42px rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+}
+
+.signup-form input {
+    width: 500px;
+}
+
+.signup-form label {
+    margin-top: 10px;
+}
+
+.signup-form h2 {
+    font-size: 40px;
+    text-decoration: underline;
+    color: rgb(164, 212, 253);
+    text-align: center;
+    margin-top: 5px;
+}
+
+textarea {
+    width: 100%;
+    font-size: 15px;
+    padding: 3px;
+    transition: linear;
+    border: none;
+}
+
+textarea:focus {
+    border: 2px solid black;
+}
+
+.signup-form input[type='submit'] {
+    height: 30px
+}
+
+header {
+    background-color: #0A0022;
+    height: 30vh;
+}
+
+header img {
+    height: 100%;
+    width: 15%;
+}
+
+header div {
+    display: inline-block;
+    width: 84%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+header div p {
+    position: absolute;
+    display: inline-block;
+    color: white;
+    font-size: 50px;
+    width: 200%;
+    top: 25%;
+    animation-name: heading;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes heading {
+    from {
+        right: -200%;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+footer {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0942CF;
+}
+
+footer p {
+    color: white;
+    font-size: 15px;
+    margin: 10px;
+}
+
+.saprater {
+    font-size: 25px;
+}
+
+.dash main {
+    background: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.dash .score {
+    border: 2px solid black;
+    height: 100%;
+    background-color: rgb(210, 210, 210);
+}
+
+.dash .score p {
+    margin-top: 70%;
+    font-size: 21px;
+    color: red;
+}
+
+.dash .right {
+    height: 100%;
+}
+
+.dash .opt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash button {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: 600;
+    background-color: rgb(254, 185, 57);
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.dash button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    background-color: rgb(236, 171, 50);
+}
+
+.dash button:active {
+    font-size: 18px;
+}
+
+.dash .right p {
+    margin: 20px 0;
+    font-size: 15px;
+    padding: 5px;
+    font-weight: 500;
+}
+
+.dash .right span {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.dash .score button {
+    width: 200px;
+    background-color: #14A44D;
+    margin: 20px 0 0 90px;
+}
+
+.account main {
+    background-image: url(../assets/images/acc-bg.jpeg);
+}
+
+.account .card {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 100 196px 192px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: block;
+
+}
+
+.account h1 {
+    width: 100%;
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.account .card input {
+    width: 500px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.account .card label {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 900;
+    display: inline-block;
+    margin-right: 20px;
+    color: black;
+}
+
+.account form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 200px;
+}
+
+.account select {
+    width: 500px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.account .card input[type="submit"] {
+    background-color: #14A44D;
+    margin-left: 50px;
+}
+
+.service_choosen {
+    display: none;
+}
+
+.dash .acc_no {
+    margin-top: 10px;
+}
+
+.dash .acc_no input {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.acc_no span {
+    font-weight: 900;
+}
+
+.dash .acc_no button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.acc_no {
+    padding: 10px;
+}
+
+.dash .acc_no button img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.dash .acc_no input {
+    background: transparent;
+    font-weight: 900;
+    margin-left: 20px;
+    visibility: 1;
+    opacity: 1;
+}
+
+.account .multi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account .half {
+    display: inline-block;
+    width: 400px;
+}
+
+.account .half input {
+    width: 200px;
+    display: inline-block;
+}
+
+.dash .del{
+    background-color: red;
+}
+
+.dash .del:hover{
+    background-color: rgb(218, 0, 0);
+}
+
+.dash .log h2{
+    text-align: center;
+    margin:20px 0;
+}
+
+.dash table{
+    width: 100%;
+}
+
+.dash .tab{
+    height: 410px;
+    overflow-y: scroll;
+}
+
+.dash tr,td{
+    border-bottom: 2px solid black;
+    height: 35px;
+    text-align: center;
+    padding: 5px;
+    font-family: sans-serif;
+}
+
+.dash .less{
+    color: red;
+    font-weight: 800;
+}
+
+.dash .more
+{
+    color: rgb(6, 189, 6);
+    font-weight: 800;
+}
